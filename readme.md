@@ -51,19 +51,13 @@ Give the connection a name like "docker_mysql_104" as the IP address will change
 
 By default you get a "sample" database with no tables.  A table will be created when we launch the Java EE application.
 
-Now that your MySQL is running happily inside of a Docker container (inside the boot2docker-vm)
-let's configure the Java EE app to use MySQL
+Now that your MySQL instance is running happily inside of a Docker container (inside the boot2docker-vm)
+let's configure the Java EE app to use your MySQL
+
+#### Create a Dockerfile that sets up Wildfly connected to MySQL with a custom application
 
 5.  `mkdir /c/Users/Burr/docker_projects/mysqlapp`
+
 Replace "Burr" with your user name.  Remember boot2docker 1.3 and higher have VirtualBox Guest Additions preconfigured to map the Linux /c/Users/ to c:\Users
 
-
-Then build a new docker image containing the javaee6angularjsmysql.war
-
-docker build --tag=mysqlapp .
-
-Then run it
-
-docker run --name mysqlapp --link mysqldb:db -it -p 8080:8080 -d mysqlapp
-
-results in "no such file or directory"
+6. step 6
