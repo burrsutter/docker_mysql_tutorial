@@ -4,7 +4,7 @@ Docker with boot2docker for Windows Java EE + MySQL
 This tutorial walks you through using a Java EE application server and MySQL, both running in Docker Linux containers on a Windows host via boot2docker.
 
 * * *
-##### Prerequisites & Assumptions:*
+##### Prerequisites & Assumptions:
 * You completed the first Docker Tutorial that walks through the basics of standing up a Java EE application server in a Docker container
 * You have MySQL Workbench installed on your Windows host
 * You have Maven installed on your Windows host machine
@@ -31,9 +31,14 @@ This tutorial walks you through using a Java EE application server and MySQL, bo
 ![Alt text](/screenshots/docker_run_mysql.png?raw=true "docker run mysql")
 
 
-    > Note: I am using -p 3306:3306 to connect from a Windows (host) MySQL Workbench and from a Windows/host based Wildfly instance.   3306 is the normal port for MySQL
+Note: I am using -p 3306:3306 to connect from a Windows (host) MySQL Workbench and from a Windows/host based Wildfly instance. 3306 is the normal port for MySQL.  You will see this port listed in the `docker ps` results as well.
 
-4.
+4. Back in Windows run MySQL Workbench.  You will need the IP address you saw when running Boot2Docker Start or `boot2docker ip`.
+
+Make the connection to your newly run MySQL
+
+![Alt text](/screenshots/mysql_workbench_new_connection.png?raw=true "new connection")
+
 
 Then build a new docker image containing the javaee6angularjsmysql.war
 
