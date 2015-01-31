@@ -21,38 +21,38 @@ This tutorial walks you through using a Java EE application server and MySQL, bo
 
     > Note: I had previously removed all images and re-initialized my environment.  You will likely have other images from the previous tutorial.
 
-![Alt text](/screenshots/docker_pull_mysql.png?raw=true "docker pull mysql")
+    ![Alt text](/screenshots/docker_pull_mysql.png?raw=true "docker pull mysql")
 
 
-3. Now, we run MySQL inside of the boot2docker-vm, inside of a Docker container
+3. Now we run MySQL inside of the boot2docker-vm, inside of a Docker container
 
-`docker run --name mysqldb -p 3306:3306 -e MYSQL_USER=mysql -e MYSQL_PASSWORD=mysql -e MYSQL_DATABASE=sample -e MYSQL_ROOT_PASSWORD=supersecret -d mysql`
+    ````
+    docker run --name mysqldb -p 3306:3306 -e MYSQL_USER=mysql -e MYSQL_PASSWORD=mysql -e MYSQL_DATABASE=sample -e  MYSQL_ROOT_PASSWORD=supersecret -d mysql`
+    ````
 
+    ![Alt text](/screenshots/docker_run_mysql.png?raw=true "docker run mysql")
 
-![Alt text](/screenshots/docker_run_mysql.png?raw=true "docker run mysql")
-
-
-Note: I am using -p 3306:3306 to connect from a Windows (host) MySQL Workbench and from a Windows/host based Wildfly instance. 3306 is the normal port for MySQL.  You will see this port listed in the `docker ps` results as well.
+    > Note: I am using -p 3306:3306 to connect from a Windows (host) MySQL Workbench and from a Windows/host based Wildfly instance. 3306 is the normal port for MySQL.  You will see this port listed in the `docker ps` results as well.
 
 
 4. Back in Windows run MySQL Workbench.  You will need the IP address you saw when running Boot2Docker Start or `boot2docker ip`.
 
-Make the connection to your newly run MySQL
+    > Make the connection to your newly run MySQL
 
-![Alt text](/screenshots/mysql_workbench_new_connection.png?raw=true "new connection")
+    ![Alt text](/screenshots/mysql_workbench_new_connection.png?raw=true "new connection")
 
-Give the connection a name like "docker_mysql_104" as the IP address will change from time to time. Enter the correct IP address.  You will notice that some of my screenshots use different IPs.
+    > Give the connection a name like "docker_mysql_104" as the IP address will change from time to time. Enter the correct IP address.  You will notice that some of my screenshots use different IPs.
 
-![Alt text](/screenshots/connect_to_database.png?raw=true "New Connection Dialog")
+    ![Alt text](/screenshots/connect_to_database.png?raw=true "New Connection Dialog")
 
-![Alt text](/screenshots/mysql_root_password.png?raw=true "Root Password Prompt")
+    ![Alt text](/screenshots/mysql_root_password.png?raw=true "Root Password Prompt")
 
-![Alt text](/screenshots/mysql_sql_editor.png?raw=true "SQL Editor")
+    ![Alt text](/screenshots/mysql_sql_editor.png?raw=true "SQL Editor")
 
 
-By default you get a "sample" database with no tables.  A table will be created when we launch the Java EE application.
+    > By default you get a "sample" database with no tables.  A table will be created when we launch the Java EE application.
 
-Now that your MySQL instance is running happily inside of a Docker container (inside the boot2docker-vm)
+    > Now that your MySQL instance is running happily inside of a Docker container (inside the boot2docker-vm)
 let's configure the Java EE app to use your MySQL
 
 #### Create a Dockerfile that sets up Wildfly connected to MySQL with a custom application
