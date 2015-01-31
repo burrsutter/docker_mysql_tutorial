@@ -40,9 +40,18 @@ Make the connection to your newly run MySQL
 
 ![Alt text](/screenshots/mysql_workbench_new_connection.png?raw=true "new connection")
 
-Give the connection a name like "docker_mysql_104" as the IP address will change from time to time. Enter the correct IP address.
+Give the connection a name like "docker_mysql_104" as the IP address will change from time to time. Enter the correct IP address.  You will notice that some of my screenshots use different IPs.
 
-![Alt text](/screenshots/connect_to_database.png?raw=true "new connection")
+![Alt text](/screenshots/connect_to_database.png?raw=true "New Connection Dialog")
+
+![Alt text](/screenshots/mysql_root_password.png?raw=true "Root Password Prompt")
+
+![Alt text](/screenshots/mysql_sql_editor.png?raw=true "SQL Editor")
+
+
+
+
+
 
 
 Then build a new docker image containing the javaee6angularjsmysql.war
