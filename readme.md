@@ -13,14 +13,13 @@ This tutorial walks you through using a Java EE application server and MySQL, bo
 
 1. Boot2docker Start
 
-![Alt text](/screenshots/boot2docker_start_menu.png?raw=true "Start Menu")
+    ![Alt text](/screenshots/boot2docker_start_menu.png?raw=true "Start Menu")
 
-![Alt text](/screenshots/start_sh_running.png?raw=true "Boot2Docker Command Prompt")
+    ![Alt text](/screenshots/start_sh_running.png?raw=true "Boot2Docker Command Prompt")
 
 2.  `docker pull mysql`
 
-Note: I had previously removed all images and re-initialized my environment.  You will likely have other
-images from the previous tutorial.
+    > Note: I had previously removed all images and re-initialized my environment.  You will likely have other images from the previous tutorial.
 
 ![Alt text](/screenshots/docker_pull_mysql.png?raw=true "docker pull mysql")
 
@@ -28,10 +27,9 @@ images from the previous tutorial.
 
 `docker run --name mysqldb -p 3306:3306 -e MYSQL_USER=mysql -e MYSQL_PASSWORD=mysql -e MYSQL_DATABASE=sample -e MYSQL_ROOT_PASSWORD=supersecret -d mysql`
 
-![Alt text](/screenshots/docker_run_mysql.png?raw=true "docker run mysql")
+    ![Alt text](/screenshots/docker_run_mysql.png?raw=true "docker run mysql")
 
-Note: I am using -p 3306:3306 to connect from a Windows (host) MySQL Workbench
-and from a Windows/host based Wildfly instance.   3306 is the normal port for MySQL
+    > Note: I am using -p 3306:3306 to connect from a Windows (host) MySQL Workbench and from a Windows/host based Wildfly instance.   3306 is the normal port for MySQL
 
 4.
 
