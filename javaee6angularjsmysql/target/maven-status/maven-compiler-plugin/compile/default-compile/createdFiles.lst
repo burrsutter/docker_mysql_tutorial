@@ -1,8 +1,0 @@
-org\jboss\as\quickstarts\kitchensink\rest\MemberResourceRESTService.class
-org\jboss\as\quickstarts\kitchensink\util\Resources.class
-org\jboss\as\quickstarts\kitchensink\rest\JaxRsActivator.class
-org\jboss\as\quickstarts\kitchensink\model\Member.class
-org\jboss\as\quickstarts\kitchensink\data\MemberRepository.class
-org\jboss\as\quickstarts\kitchensink\model\Member_.class
-org\jboss\as\quickstarts\kitchensink\service\MemberRegistration.class
-org\jboss\as\quickstarts\kitchensink\data\MemberListProducer.class
