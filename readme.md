@@ -104,8 +104,16 @@ let's configure the Java EE app to use your MySQL
     <jta-data-source>java:jboss/datasources/MySQLSampleDS</jta-data-source>
     ````
 
-    ![Alt text](/screenshots/persistence_xml.png?raw=true "mvn clean compile package")
+    ![Alt text](/screenshots/persistence_xml.png?raw=true "persistence.xml")
+
+    > This Java EE6 application needs a datasource which must be configured inside of the application server.  The datasource needs a JDBC Driver to have been pre-loaded as well.  
+
+10.  Copy the file MySQL JBDC driver - mysql-connector-java-5.1.31-bin.jar - to your mysqlapp directory.  When the docker image is created, this file will be dropped into Wildfly's standalone\deployments directory.  Wildfly hot deploys JDBC drivers it finds in its deployments directory.
 
 
+11.  Copy the file mysql-sample-ds.xml to your mysqlapp directory and open it in your editor.
 
-10.
+    ![Alt text](/screenshots/mysql_sample_ds_xml.png?raw=true "mysql-sample-ds.xml")
+
+
+12.
