@@ -55,7 +55,7 @@ This tutorial walks you through using a Java EE application server and MySQL, bo
 
     ![Alt text](/screenshots/mysql_root_password.png?raw=true "Root Password Prompt")
 
-    > You can double-click on the connection to open up the SQL Editor
+    > Double-click on the connection to open up the SQL Editor
 
     ![Alt text](/screenshots/mysql_sql_editor.png?raw=true "SQL Editor")
 
@@ -65,9 +65,11 @@ This tutorial walks you through using a Java EE application server and MySQL, bo
     > Now that your MySQL instance is running happily inside of a Docker container (inside the boot2docker-vm)
 let's configure the Java EE app to use your MySQL
 
-5.  `mkdir /c/Users/Burr/docker_projects/mysqlapp`
+5. In the first tutorial, we gave you the .war pre-built, in this case, we want you to download the project sources to your local machine and perform you own Maven build to generate the .war.
+
+    > Download and unzip <https://github.com/burrsutter/docker_mysql_tutorial/archive/master.zip>
+
+6.  `mkdir /c/Users/Burr/docker_projects/mysqlapp`
 
     > Replace "Burr" with your user name.  Remember boot2docker 1.3 and higher have VirtualBox Guest Additions preconfigured to map the Linux `/c/Users/` to `c:\Users`
-
-6. step 6
-    blah, blah
+    > You can also just use the Windows Explorer to create this directory
