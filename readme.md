@@ -160,4 +160,12 @@ let's configure the Java EE app to use your MySQL
     ![Alt text](/screenshots/after_docker_build.png?raw=true "docker build results")
 
 
-14.
+14. `docker run -it -p 8080:8080 mysqlapp`
+
+    > Then use your browser to interact with the application, register a new Member
+
+    ![Alt text](/screenshots/browser.png?raw=true "Application in Browser")
+
+    > Then check out your MySQL database in the SQL Editor
+
+    ![Alt text](/screenshots/sql_editor.png?raw=true "SQL Editor")
