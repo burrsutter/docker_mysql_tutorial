@@ -76,3 +76,22 @@ let's configure the Java EE app to use your MySQL
 
     > Replace "Burr" with your user name.  Remember boot2docker 1.3 and higher have VirtualBox Guest Additions preconfigured to map the Linux `/c/Users/` to `c:\Users`
     > You can also just use the Windows Explorer to create this directory
+
+7. Using File Explorer, copy the directory `javaee6angularjsmysql` to mysqlapp
+
+8. From a Windows (DOS) Command Prompt,
+    ````
+    cd \Users\Burr\docker_projects\mysqlapp\javaee6angularjsmysql
+    mvn clean compile package
+    ````
+
+
+    This does require that you have a JDK and Maven installed and your PATH set properly.  Setting up your PATH can be a simple the executing the following commands
+
+    ````
+    set JAVA_HOME=C:\tools\java\jdk1.7.0_04_32bit
+    set M2_HOME=C:\tools\apache-maven-3.2.3
+    set PATH=%JAVA_HOME%\bin;%M2_HOME%\bin;C:\tools;%PATH%
+    ````
+
+9. nine
