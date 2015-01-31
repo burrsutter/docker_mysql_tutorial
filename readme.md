@@ -86,12 +86,16 @@ let's configure the Java EE app to use your MySQL
     ````
 
 
-    This does require that you have a JDK and Maven installed and your PATH set properly.  Setting up your PATH can be a simple the executing the following commands
+    > This does require that you have a JDK and Maven installed plus your PATH set properly.  Setting up your PATH can be as simple as executing the following commands:
 
     ````
     set JAVA_HOME=C:\tools\java\jdk1.7.0_04_32bit
     set M2_HOME=C:\tools\apache-maven-3.2.3
     set PATH=%JAVA_HOME%\bin;%M2_HOME%\bin;C:\tools;%PATH%
     ````
+
+    > Look for BUILD SUCCESS
+
+    ![Alt text](/screenshots/build_success.png?raw=true "mvn clean compile package")    
 
 9. nine
