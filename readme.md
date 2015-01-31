@@ -35,22 +35,27 @@ This tutorial walks you through using a Java EE application server and MySQL, bo
     > Note: I am using -p 3306:3306 to connect from a Windows (host) MySQL Workbench and from a Windows/host based Wildfly instance. 3306 is the normal port for MySQL.  You will see this port listed in the `docker ps` results as well.
 
     * * *
-    ##### Tip: Copy & Paste in the default Windows Command Prompt is possible.  Click on the top-left icon for the pull-down menu.  Select Mark, highlight the text you wish to copy, then hit Enter. Then for Paste, simply use the menu option.
+    ##### Tip: Copy & Paste in the default Windows Command Prompt is possible.  
+    Click on the top-left icon for the pull-down menu.  Select Mark, highlight the text you wish to copy, then hit Enter. Then for Paste, simply use the menu option.
     ![Alt text](/screenshots/mark_paste.png?raw=true "DOS/Command Prompt Copy & Paste")
 
     * * *
 
 4. Back in Windows run MySQL Workbench.  You will need the IP address you saw when running Boot2Docker Start or `boot2docker ip`.
 
-    > Make the connection to your newly run MySQL
+    > Select New Connection
 
     ![Alt text](/screenshots/mysql_workbench_new_connection.png?raw=true "new connection")
 
-    > Give the connection a name like "docker_mysql_104" as the IP address will change from time to time. Enter the correct IP address.  You will notice that some of my screenshots use different IPs.
+    > Give the connection a name like "docker_mysql_104" as the IP address will change from time to time. Enter the correct IP address.  You will notice that some of the screenshots use different IPs.
 
     ![Alt text](/screenshots/connect_to_database.png?raw=true "New Connection Dialog")
 
+    > The root password was defined via the `docker run` command, look for MYSQL_ROOT_PASSWORD
+
     ![Alt text](/screenshots/mysql_root_password.png?raw=true "Root Password Prompt")
+
+    > You can double-click on the connection to open up the SQL Editor
 
     ![Alt text](/screenshots/mysql_sql_editor.png?raw=true "SQL Editor")
 
@@ -62,8 +67,11 @@ let's configure the Java EE app to use your MySQL
 
 #### Create a Dockerfile that sets up Wildfly connected to MySQL with a custom application
 
+
 5.  `mkdir /c/Users/Burr/docker_projects/mysqlapp`
 
-Replace "Burr" with your user name.  Remember boot2docker 1.3 and higher have VirtualBox Guest Additions preconfigured to map the Linux /c/Users/ to c:\Users
+    > Replace "Burr" with your user name.  Remember boot2docker 1.3 and higher have VirtualBox Guest Additions preconfigured to map the Linux `/c/Users/` to `c:\Users`
 
 6. step 6
+    blah, blah
+    
