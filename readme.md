@@ -115,5 +115,15 @@ let's configure the Java EE app to use your MySQL
 
     ![Alt text](/screenshots/mysql_sample_ds_xml.png?raw=true "mysql-sample-ds.xml")
 
+    > Now, this is where a lot of the magic happens.  This file when found in Wildfly's standalone\deployments directory will configure a Datasource inside of Wildfly.  You should notice that the JNDI name of "MySQLSampleDS" matches what you have in the persistence.xml.  Also, you will need to adjust the IP address based on your MySQL running inside of Docker.  Finally, the user and password for MySQL were setup back with the `docker run` command in step 3.
+
+    ````
+    <connection-url>jdbc:mysql://192.168.59.104:3306/sample</connection-url>
+    <driver>mysql-connector-java-5.1.31-bin.jar_com.mysql.jdbc.Driver_5_1</driver>
+    <security>
+      <user-name>mysql</user-name>
+      <password>mysql</password>
+    </security>
+    ````
 
 12.
