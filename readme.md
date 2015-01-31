@@ -96,6 +96,16 @@ let's configure the Java EE app to use your MySQL
 
     > Look for BUILD SUCCESS
 
-    ![Alt text](/screenshots/build_success.png?raw=true "mvn clean compile package")    
+    ![Alt text](/screenshots/build_success.png?raw=true "mvn clean compile package")
 
-9. nine
+9. Open the javaee6angularjsmysql project in your favorite editor (I have been trying out Atom.io) and review the persistence.xml file.  Take note of the following line:
+
+    ````
+    <jta-data-source>java:jboss/datasources/MySQLSampleDS</jta-data-source>
+    ````
+
+    ![Alt text](/screenshots/persistence_xml.png?raw=true "mvn clean compile package")
+
+
+
+10.
