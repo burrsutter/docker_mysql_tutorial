@@ -49,9 +49,13 @@ Give the connection a name like "docker_mysql_104" as the IP address will change
 ![Alt text](/screenshots/mysql_sql_editor.png?raw=true "SQL Editor")
 
 
+By default you get a "sample" database with no tables.  A table will be created when we launch the Java EE application.
 
+Now that your MySQL is running happily inside of a Docker container (inside the boot2docker-vm)
+let's configure the Java EE app to use MySQL
 
-
+5.  `mkdir /c/Users/Burr/docker_projects/mysqlapp`
+Replace "Burr" with your user name.  Remember boot2docker 1.3 and higher have VirtualBox Guest Additions preconfigured to map the Linux /c/Users/ to c:\Users
 
 
 Then build a new docker image containing the javaee6angularjsmysql.war
