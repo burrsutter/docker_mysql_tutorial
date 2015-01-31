@@ -33,11 +33,16 @@ This tutorial walks you through using a Java EE application server and MySQL, bo
 
 Note: I am using -p 3306:3306 to connect from a Windows (host) MySQL Workbench and from a Windows/host based Wildfly instance. 3306 is the normal port for MySQL.  You will see this port listed in the `docker ps` results as well.
 
+
 4. Back in Windows run MySQL Workbench.  You will need the IP address you saw when running Boot2Docker Start or `boot2docker ip`.
 
 Make the connection to your newly run MySQL
 
 ![Alt text](/screenshots/mysql_workbench_new_connection.png?raw=true "new connection")
+
+Give the connection a name like "docker_mysql_104" as the IP address will change from time to time. Enter the correct IP address.
+
+![Alt text](/screenshots/connect_to_database.png?raw=true "new connection")
 
 
 Then build a new docker image containing the javaee6angularjsmysql.war
