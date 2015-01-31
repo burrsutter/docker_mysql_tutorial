@@ -22,15 +22,18 @@ This tutorial walks you through using a Java EE application server and MySQL, bo
 Note: I had previously removed all images and re-initialized my environment.  You will likely have other
 images from the previous tutorial.
 
+![Alt text](/screenshots/docker_pull_mysql.png?raw=true "docker pull mysql")
 
 3. Now, we run MySQL inside of the boot2docker-vm, inside of a Docker container
 
 `docker run --name mysqldb -p 3306:3306 -e MYSQL_USER=mysql -e MYSQL_PASSWORD=mysql -e MYSQL_DATABASE=sample -e MYSQL_ROOT_PASSWORD=supersecret -d mysql`
 
-Note: I am using -p 3306:3306 to connect from a Windows (host) MySQL Workbench
-and from a Windows/host based Wildfly instance.  
+![Alt text](/screenshots/docker_run_mysql.png?raw=true "docker run mysql")
 
-4. 
+Note: I am using -p 3306:3306 to connect from a Windows (host) MySQL Workbench
+and from a Windows/host based Wildfly instance.   3306 is the normal port for MySQL
+
+4.
 
 Then build a new docker image containing the javaee6angularjsmysql.war
 
