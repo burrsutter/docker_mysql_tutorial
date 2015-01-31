@@ -69,6 +69,9 @@ let's configure the Java EE app to use your MySQL
 
     > Download and unzip <https://github.com/burrsutter/docker_mysql_tutorial/archive/master.zip>
 
+    ![Alt text](/screenshots/download_unzip.png?raw=true "Download and Unzip")
+
+
 6.  `mkdir /c/Users/Burr/docker_projects/mysqlapp`
 
     > Replace "Burr" with your user name.  Remember boot2docker 1.3 and higher have VirtualBox Guest Additions preconfigured to map the Linux `/c/Users/` to `c:\Users`
