@@ -126,4 +126,26 @@ let's configure the Java EE app to use your MySQL
     </security>
     ````
 
-12.
+12. Copy the Dockerfile to your mysqlapp directory and open it up in your editor.
+
+    ````
+    FROM centos/wildfly
+
+    ADD mysql-connector-java-5.1.31-bin.jar /opt/wildfly/standalone/deployments/
+    ADD mysql-sample-ds.xml /opt/wildfly/standalone/deployments/
+    ADD javaee6angularjsmysql/target/javaee6angularjsmysql.war /opt/wildfly/standalone/deployments/
+    ````
+    ![Alt text](/screenshots/mysqlapp_with_Dockerfile.png?raw=true "mysqlapp directory with Dockerfile")
+
+    > mysql-connector-java-5.1.31-bin.jar is in the same directory as the Dockerfile
+    > mysql-sample-ds.xml is also in the same directory
+    > javaee6angularjsmysql.war was created via `mvn clean compile package`
+
+    ![Alt text](/screenshots/target_directory.png?raw=true "target directory")
+
+    > All three of those files need to be packaged into the Docker image.
+
+    > Note: This is NOT how you would normally configure a JDBC driver and Datasource for a production ready Docker image.  At a minimum, you would separate these into three different layers/images - allowing you to update the JDBC driver in a single layer/location/image.
+
+
+13. 
