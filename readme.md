@@ -65,13 +65,9 @@ This tutorial walks you through using a Java EE application server and MySQL, bo
     > Now that your MySQL instance is running happily inside of a Docker container (inside the boot2docker-vm)
 let's configure the Java EE app to use your MySQL
 
-#### Create a Dockerfile that sets up Wildfly connected to MySQL with a custom application
-
-
 5.  `mkdir /c/Users/Burr/docker_projects/mysqlapp`
 
     > Replace "Burr" with your user name.  Remember boot2docker 1.3 and higher have VirtualBox Guest Additions preconfigured to map the Linux `/c/Users/` to `c:\Users`
 
 6. step 6
     blah, blah
-    
