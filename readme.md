@@ -17,11 +17,12 @@ This tutorial walks you through using a Java EE application server and MySQL, bo
 
     ![Alt text](/screenshots/start_sh_running.png?raw=true "Boot2Docker Command Prompt")
 
-2.  `docker pull mysql`
+2. `docker pull mysql`
 
     > Note: I had previously removed all images and re-initialized my environment.  You will likely have other images from the previous tutorial.
 
 ![Alt text](/screenshots/docker_pull_mysql.png?raw=true "docker pull mysql")
+
 
 3. Now, we run MySQL inside of the boot2docker-vm, inside of a Docker container
 
