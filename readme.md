@@ -27,13 +27,18 @@ This tutorial walks you through using a Java EE application server and MySQL, bo
 3. Now we run MySQL inside of the boot2docker-vm, inside of a Docker container
 
     ````
-    docker run --name mysqldb -p 3306:3306 -e MYSQL_USER=mysql -e MYSQL_PASSWORD=mysql -e MYSQL_DATABASE=sample -e  MYSQL_ROOT_PASSWORD=supersecret -d mysql`
+    docker run --name mysqldb -p 3306:3306 -e MYSQL_USER=mysql -e MYSQL_PASSWORD=mysql -e MYSQL_DATABASE=sample -e  MYSQL_ROOT_PASSWORD=supersecret -d mysql
     ````
 
     ![Alt text](/screenshots/docker_run_mysql.png?raw=true "docker run mysql")
 
     > Note: I am using -p 3306:3306 to connect from a Windows (host) MySQL Workbench and from a Windows/host based Wildfly instance. 3306 is the normal port for MySQL.  You will see this port listed in the `docker ps` results as well.
 
+    * * *
+    ##### Tip: Copy & Paste in the default Windows Command Prompt is possible.  Click on the top-left icon for the pull-down menu.  Select Mark, highlight the text you wish to copy, then hit Enter. Then for Paste, simply use the menu option.
+    ![Alt text](/screenshots/mark_paste.png?raw=true "DOS/Command Prompt Copy & Paste")
+
+    * * *
 
 4. Back in Windows run MySQL Workbench.  You will need the IP address you saw when running Boot2Docker Start or `boot2docker ip`.
 
