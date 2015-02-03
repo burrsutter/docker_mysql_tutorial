@@ -131,9 +131,12 @@ let's configure the Java EE app to use your MySQL
     ````
     FROM centos/wildfly
 
-    ADD mysql-connector-java-5.1.31-bin.jar /opt/wildfly/standalone/deployments/
-    ADD mysql-sample-ds.xml /opt/wildfly/standalone/deployments/
-    ADD javaee6angularjsmysql/target/javaee6angularjsmysql.war /opt/wildfly/standalone/deployments/
+    COPY standalone.xml /opt/wildfly/standalone/configuration/
+    COPY mysql-connector-java-5.1.31-bin.jar /opt/wildfly/standalone/deployments/
+    COPY mysql-sample-ds.xml /opt/wildfly/standalone/deployments/
+
+    COPY javaee6angularjsmysql/target/javaee6angularjsmysql.war /opt/wildfly/standalone/deployments/
+
     ````
     ![Alt text](/screenshots/mysqlapp_with_Dockerfile.png?raw=true "mysqlapp directory with Dockerfile")
 
@@ -160,7 +163,9 @@ let's configure the Java EE app to use your MySQL
     ![Alt text](/screenshots/after_docker_build.png?raw=true "docker build results")
 
 
-14. `docker run -it -p 8080:8080 mysqlapp`
+14. `docker run -it -p 8080:8080 --link mysqldb:mydatabaseserver mysqlapp`
+
+    > This docker run introduces a new concept --link.  The MySQL container was started with "--name mysqldb" back in Step 3 and the "mydatabaseserver" is referenced in the -ds.xml as an environment variable.
 
     > Then use your browser to interact with the application, register a new Member
 
