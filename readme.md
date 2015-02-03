@@ -165,12 +165,22 @@ let's configure the Java EE app to use your MySQL
 
 14. `docker run -it -p 8080:8080 --link mysqldb:mydatabaseserver mysqlapp`
 
-    > This docker run introduces a new concept --link.  The MySQL container was started with "--name mysqldb" back in Step 3 and the "mydatabaseserver" is referenced in the -ds.xml as an environment variable.
+    > Note: This docker run introduces a new concept --link.
+    >
+    > The MySQL container was started with "--name mysqldb" back in Step 3 and the "mydatabaseserver" is referenced in the -ds.xml as an environment variable. You can verify the "mysqldb" name of the MySQL container via the `docker ps` command.
+    >
+    > You can find out more information about Docker container linking in the official documentation at
+    <https://docs.docker.com/userguide/dockerlinks/>
 
-    > Then use your browser to interact with the application, register a new Member
+
+
+15. Use your browser to interact with the application, register a new Member
 
     ![Alt text](/screenshots/browser.png?raw=true "Application in Browser")
 
     > Then check out your MySQL database in the SQL Editor
 
     ![Alt text](/screenshots/sql_editor.png?raw=true "SQL Editor")
+
+
+The End
