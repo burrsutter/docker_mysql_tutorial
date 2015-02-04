@@ -7,7 +7,8 @@ This tutorial walks you through using a Java EE application server and MySQL, bo
 ##### Prerequisites & Assumptions:
 * You completed the first Docker Tutorial that walks through the basics of standing up a Java EE application server in a Docker container
 * You have MySQL Workbench installed on your Windows host
-* You have Maven installed on your Windows host machine
+* You have Maven and a JDK installed on your Windows host machine
+* Note: We give you an out if Java & Maven are not working well for you
 * * *
 
 
@@ -97,6 +98,8 @@ let's configure the Java EE app to use your MySQL
     > Look for BUILD SUCCESS
 
     ![Alt text](/screenshots/build_success.png?raw=true "mvn clean compile package")
+
+    > Do not have Maven nor the Java Development Kit running well on this workstation? No problem, just download the pre-built .war from <https://github.com/burrsutter/docker_tutorial/blob/master/javaee6angularjsmysql.war?raw=true>
 
 9. Open the javaee6angularjsmysql project in your favorite editor (I have been trying out Atom.io) and review the persistence.xml file.  Take note of the following line:
 
