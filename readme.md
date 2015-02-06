@@ -189,10 +189,13 @@ let's configure the Java EE app to use your MySQL
 #### Extra Credit
 
 To enable the Wildfly Admin Console, add the following to your Dockerfile
+
 ````
 RUN /opt/wildfly/bin/add-user.sh admin Admin!1234 --silent
 ````
-This is an example where the Docker build will execute a screen to provide custom configuration of the resulting Docker image.  You could have used this same technique to execute commands that would have configured the JDBC driver and Datasource inside of the container.  We choose the -ds.xml and hot deployment of the JDBC driver .jar techniques above due to 'ease of learning'.
+
+This is an example where the Docker build will execute a screen to provide custom configuration of the resulting Docker image.  In this specific case "admin" is the user id and "Admin!1234" is the password.
+You could have used this same technique to execute commands that would have configured the JDBC driver and Datasource inside of the container.  We choose the -ds.xml and hot deployment of the JDBC driver .jar techniques above due to 'ease of learning'.  
 
 The JBoss Wildfly Admin Console uses a different port, so also change your "docker run" statement as follows:
 
