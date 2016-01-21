@@ -1,34 +1,34 @@
-Docker with boot2docker for Windows Java EE + MySQL
-===================================================
+Docker with Docker Toolbox for Windows Java EE + MySQL
+=======================================================
 
-This tutorial walks you through using a Java EE application server and MySQL, both running in Docker Linux containers on a Windows host via boot2docker.
+This tutorial walks you through using a Java EE application server and MySQL, both running in Docker Linux containers on a Windows host via Docker Toolbox.
 
 * * *
 ##### Prerequisites & Assumptions:
-* You completed the first Docker Tutorial that walks through the basics of standing up a Java EE application server in a Docker container
-* You have MySQL Workbench installed on your Windows host
-* You have Maven and a JDK installed on your Windows host machine
+* You completed the first [Docker Tutorial](https://github.com/burrsutter/docker_tutorial) that walks through the basics of standing up a Java EE application server in a Docker container
+* You have [MySQL Workbench](http://dev.mysql.com/downloads/workbench/) installed on your Windows host
+* You have [Maven](http://maven.apache.org/) and a [JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) installed on your Windows host machine
 * Note: We give you an out if Java & Maven are not working well for you
 * * *
 
 
-1. Boot2docker Start
+1. Docker Quickstart terminal
 
-    ![Alt text](/screenshots/boot2docker_start_menu.png?raw=true "Start Menu")
+    ![Alt text](/screenshots/docker_quickstart_terminal.png?raw=true "Start Menu")
 
     ![Alt text](/screenshots/start_sh_running.png?raw=true "Boot2Docker Command Prompt")
 
-2. `docker pull mysql`
+2. `docker network create mysqlapp_net`
 
-    > Note: I had previously removed all images and re-initialized my environment.  You will likely have other images from the previous tutorial.
+    > This command will create a network that will be used by mysql and wildfly containers
 
-    ![Alt text](/screenshots/docker_pull_mysql.png?raw=true "docker pull mysql")
+    ![Alt text](/screenshots/docker_network_create.png?raw=true "docker network create mysqlapp_net")
 
 
-3. Now we run MySQL inside of the boot2docker-vm, inside of a Docker container
+3. Now we run MySQL using the recently created network, inside of a Docker container
 
     ````
-    docker run --name mysqldb -p 3306:3306 -e MYSQL_USER=mysql -e MYSQL_PASSWORD=mysql -e MYSQL_DATABASE=sample -e  MYSQL_ROOT_PASSWORD=supersecret -d mysql
+    docker run --name mysqldb --net mysqlapp_net -p 3306:3306 -e MYSQL_USER=mysql -e MYSQL_PASSWORD=mysql -e MYSQL_DATABASE=sample -e  MYSQL_ROOT_PASSWORD=supersecret -d mysql
     ````
 
     ![Alt text](/screenshots/docker_run_mysql.png?raw=true "docker run mysql")
@@ -42,7 +42,7 @@ This tutorial walks you through using a Java EE application server and MySQL, bo
 
     * * *
 
-4. Back in Windows run MySQL Workbench.  You will need the IP address you saw when running Boot2Docker Start or `boot2docker ip`.
+4. Back in Windows run MySQL Workbench.  You will need the IP address you saw when running `Docker Quickstart terminal`  or `docker-machine ip default`.
 
     > Select New Connection
 
@@ -63,7 +63,7 @@ This tutorial walks you through using a Java EE application server and MySQL, bo
 
     > By default you get a "sample" database with no tables.  A table will be created when we launch the Java EE application.
 
-    > Now that your MySQL instance is running happily inside of a Docker container (inside the boot2docker-vm)
+    > Now that your MySQL instance is running happily inside of a Docker container (inside the docker host called default)
 let's configure the Java EE app to use your MySQL
 
 5. In the first tutorial, we gave you the .war pre-built, in this case, we want you to download the project sources to your local machine and perform you own Maven build to generate the .war.
@@ -73,16 +73,16 @@ let's configure the Java EE app to use your MySQL
     ![Alt text](/screenshots/download_unzip.png?raw=true "Download and Unzip")
 
 
-6.  `mkdir /c/Users/Burr/docker_projects/mysqlapp`
+6.  `mkdir /c/Users/<your_username>/docker_projects/mysqlapp`
 
-    > Replace "Burr" with your user name.  Remember boot2docker 1.3 and higher have VirtualBox Guest Additions preconfigured to map the Linux `/c/Users/` to `c:\Users`
+    > Remember docker hosts have VirtualBox Guest Additions preconfigured to map the Linux `/c/Users/` to `c:\Users`
     > You can also just use the Windows Explorer to create this directory
 
 7. Using File Explorer, copy the directory `javaee6angularjsmysql` to mysqlapp
 
 8. From a Windows (DOS) Command Prompt,
     ````
-    cd \Users\Burr\docker_projects\mysqlapp\javaee6angularjsmysql
+    cd \Users\<your_username>\docker_projects\mysqlapp\javaee6angularjsmysql
     mvn clean compile package
     ````
 
@@ -118,10 +118,10 @@ let's configure the Java EE app to use your MySQL
 
     ![Alt text](/screenshots/mysql_sample_ds_xml.png?raw=true "mysql-sample-ds.xml")
 
-    > Now, this is where a lot of the magic happens.  This file when found in Wildfly's standalone\deployments directory will configure a Datasource inside of Wildfly.  You should notice that the JNDI name of "MySQLSampleDS" matches what you have in the persistence.xml.  The user and password for MySQL were setup back with the `docker run` command in step 3.
+    > Now, this is where a lot of the magic happens.  This file when found in Wildfly's standalone\deployments directory will configure a Datasource inside of Wildfly.  You should notice that the JNDI name of "MySQLSampleDS" matches what you have in the persistence.xml.  The hosname, user and password for MySQL were setup back with the `docker run` command in step 3.
 
     ````
-    <connection-url>jdbc:mysql://mydatabaseserver:3306/sample</connection-url>
+    <connection-url>jdbc:mysql://mysqldb:3306/sample</connection-url>
     <driver>mysql-connector-java-5.1.31-bin.jar_com.mysql.jdbc.Driver_5_1</driver>
     <security>
       <user-name>mysql</user-name>
@@ -155,10 +155,10 @@ let's configure the Java EE app to use your MySQL
     > Note: This is NOT how you would normally configure a JDBC driver and Datasource for a production ready Docker image.  You are likely separate these into three different layers/images - allowing you to update the JDBC driver in a single layer/location/image.
 
 
-13. Build the new Docker image in the boot2docker shell (start.sh)
+13. Build the new Docker image in the `Docker Quickstart terminal`
 
     ````
-    cd /c/Users/Burr/docker_projects/mysqlapp
+    cd /c/Users/<your_username>/docker_projects/mysqlapp
 
     docker build --tag=mysqlapp .
     ````
@@ -166,18 +166,16 @@ let's configure the Java EE app to use your MySQL
     ![Alt text](/screenshots/after_docker_build.png?raw=true "docker build results")
 
 
-14. `docker run -it -p 8080:8080 --link mysqldb:mydatabaseserver mysqlapp`
+14. `docker run -it --net mysqlapp_net -p 8080:8080  mysqlapp`
 
-    > Note: This docker run introduces a new concept --link.
+    > The MySQL container was started with "--name mysqldb" back in Step 3 and the "mysqldb" is referenced in the -ds.xml as a hostname. You can verify the "mysqldb" name of the MySQL container via the `docker ps` command.
     >
-    > The MySQL container was started with "--name mysqldb" back in Step 3 and the "mydatabaseserver" is referenced in the -ds.xml as an environment variable. You can verify the "mysqldb" name of the MySQL container via the `docker ps` command.
-    >
-    > You can find out more information about Docker container linking in the official documentation at
-    <https://docs.docker.com/userguide/dockerlinks/>
+    > You can find out more information about Docker networks in the official documentation at
+    <https://docs.docker.com/engine/userguide/networking/dockernetworks/>
 
 
 
-15. Use your browser to interact with the application, register a new Member
+15. Use your browser to interact with the application, register a new Member.  You will need the IP address you saw when running `Docker Quickstart terminal`  or `docker-machine ip default`.
 
     ![Alt text](/screenshots/browser.png?raw=true "Application in Browser")
 
@@ -200,7 +198,7 @@ You could have used this same technique to execute commands that would have conf
 The JBoss Wildfly Admin Console uses a different port, so also change your "docker run" statement as follows:
 
 ````
-docker run -it -p 8080:8080 -p 9990:9990 --link mysqldb:mydatabaseserver mysqlapp
+docker run -it -p 8080:8080 -p 9990:9990 --net mysqlapp_net mysqlapp
 ````
 
 ![Alt text](/screenshots/wildfly_admin_console.png?raw=true "JBoss Wildfly Admin Console")
