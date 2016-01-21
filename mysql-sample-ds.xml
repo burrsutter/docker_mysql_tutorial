@@ -2,7 +2,7 @@
  <datasources>
    <datasource jndi-name="java:jboss/datasources/MySQLSampleDS" enabled="true" use-java-context="true"
          pool-name="MySQLSampleDS">
-     <connection-url>jdbc:mysql://mydatabaseserver:3306/sample</connection-url>
+     <connection-url>jdbc:mysql://mysqldb:3306/sample</connection-url>
      <driver>mysql-connector-java-5.1.31-bin.jar_com.mysql.jdbc.Driver_5_1</driver>
      <security>
        <user-name>mysql</user-name>
