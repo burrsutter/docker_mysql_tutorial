@@ -31,12 +31,14 @@ This tutorial walks you through using a Java EE application server and MySQL, bo
     docker run --name mysqldb --net mysqlapp_net -p 3306:3306 -e MYSQL_USER=mysql -e MYSQL_PASSWORD=mysql -e MYSQL_DATABASE=sample -e  MYSQL_ROOT_PASSWORD=supersecret -d mysql
     ````
 
+    This will take some time if this is the first run of the "mysql" image
+
     ![Alt text](/screenshots/docker_run_mysql.png?raw=true "docker run mysql")
 
     > Note: I am using -p 3306:3306 to connect from a Windows (host) MySQL Workbench and from a Windows/host based Wildfly instance. 3306 is the normal port for MySQL.  You will see this port listed in the `docker ps` results as well.
 
     * * *
-    ##### Tip: Copy & Paste in the default Windows Command Prompt is possible.  
+    ##### Tip: Copy & Paste in the default Windows Command Prompt is possible.
     Click on the top-left icon for the pull-down menu.  Select Mark, highlight the text you wish to copy, then hit Enter. Then for Paste, simply use the menu option.
     ![Alt text](/screenshots/mark_paste.png?raw=true "DOS/Command Prompt Copy & Paste")
 
@@ -101,7 +103,7 @@ let's configure the Java EE app to use your MySQL
 
     > Do not have Maven nor the Java Development Kit running well on this workstation? No problem, just download the pre-built .war from <https://github.com/burrsutter/docker_tutorial/blob/master/javaee6angularjsmysql.war?raw=true>
 
-9. Open the javaee6angularjsmysql project in your favorite editor (I have been trying out Atom.io) and review the persistence.xml file.  Take note of the following line:
+9. Open the javaee6angularjsmysql project in your favorite editor (I have been trying out Atom.io) and review the persistence.xml file (located in src/main/resources/META-INF folder).  Take note of the following line:
 
     ````
     <jta-data-source>java:jboss/datasources/MySQLSampleDS</jta-data-source>
@@ -109,7 +111,7 @@ let's configure the Java EE app to use your MySQL
 
     ![Alt text](/screenshots/persistence_xml.png?raw=true "persistence.xml")
 
-    > This Java EE6 application needs a datasource which must be configured inside of the application server.  The datasource needs a JDBC Driver to have been pre-loaded as well.  
+    > This Java EE6 application needs a datasource which must be configured inside of the application server.  The datasource needs a JDBC Driver to have been pre-loaded as well.
 
 10.  Copy the file MySQL JBDC driver - mysql-connector-java-5.1.31-bin.jar - to your mysqlapp directory.  When the docker image is created, this file will be dropped into Wildfly's standalone\deployments directory.  Wildfly hot deploys JDBC drivers it finds in its deployments directory.
 
@@ -179,7 +181,7 @@ let's configure the Java EE app to use your MySQL
 
     ![Alt text](/screenshots/browser.png?raw=true "Application in Browser")
 
-    > Then check out your MySQL database in the SQL Editor
+    > Then check out your MySQL database in the SQL Editor. Note that the table name is case sensitve.
 
     ![Alt text](/screenshots/sql_editor.png?raw=true "SQL Editor")
 
@@ -192,8 +194,14 @@ To enable the Wildfly Admin Console, add the following to your Dockerfile
 RUN /opt/wildfly/bin/add-user.sh admin Admin!1234 --silent
 ````
 
+and build the image again:
+
+````
+docker build --tag=mysqlapp .
+````
+
 This is an example where the Docker build will execute a screen to provide custom configuration of the resulting Docker image.  In this specific case "admin" is the user id and "Admin!1234" is the password.
-You could have used this same technique to execute commands that would have configured the JDBC driver and Datasource inside of the container.  We choose the -ds.xml and hot deployment of the JDBC driver .jar techniques above due to 'ease of learning'.  
+You could have used this same technique to execute commands that would have configured the JDBC driver and Datasource inside of the container.  We choose the -ds.xml and hot deployment of the JDBC driver .jar techniques above due to 'ease of learning'.
 
 The JBoss Wildfly Admin Console uses a different port, so also change your "docker run" statement as follows:
 
